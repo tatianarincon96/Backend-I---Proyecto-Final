@@ -35,7 +35,7 @@ public class OdontologoController implements CRUDController<OdontologoDto> {
     }
 
     @Override
-    @PostMapping()
+    @PostMapping("/nuevo")
     public ResponseEntity<?> crear(@RequestBody OdontologoDto odontologo) throws ServiceException, UnauthorizedAccessException {
         OdontologoDto odontologoNuevo;
         odontologoNuevo = odontologoServiceImpl.registrar(odontologo);

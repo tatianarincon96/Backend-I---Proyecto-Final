@@ -39,7 +39,7 @@ public class UserController implements CRUDController<UserDto>  {
         return ResponseEntity.status(HttpStatus.OK).body(usuarios);
     }
 
-    @PostMapping
+    @PostMapping("/nuevo")
     public ResponseEntity<?> crear(@RequestBody UserDto appUser) throws ServiceException {
         UserDto nuevoUsuario;
         nuevoUsuario = appUserServiceImpl.registrar(appUser);

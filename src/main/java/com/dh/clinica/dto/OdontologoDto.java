@@ -18,6 +18,13 @@ public class OdontologoDto {
         this.matricula = odontologo.getMatricula();
     }
 
+    public OdontologoDto(Integer id, String nombre, String apellido, Integer matricula) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.matricula = matricula;
+    }
+
     public OdontologoDto(Integer id) {
         this.id = id;
     }

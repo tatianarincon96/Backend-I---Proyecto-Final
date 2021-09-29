@@ -10,11 +10,14 @@ import com.dh.clinica.exceptions.FindByIdException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Qualifier("TurnoServiceImpl")
@@ -105,9 +108,10 @@ public class TurnoServiceImpl implements ITurnoService {
     @Override
     public List<TurnoDto> buscarTurnosUltimaSemana() throws FindByIdException {
         List<Turno> turnosDB = turnoRepository.findAll();
-        List<Turno> turnosDBUltimaSemana = (List<Turno>) turnosDB.stream().filter(t -> t.getFecha().isAfter(LocalDate.now().minusDays(7)));
+        Stream<Turno> streamTurnos = turnosDB.stream().filter(t -> t.getFecha().isAfter(LocalDate.now().minusDays(7)));
+        List<Turno> listTurnos = streamTurnos.collect(Collectors.toList());
         List<TurnoDto> turnosDtoUltimaSemana = new ArrayList<>();
-        for (Turno turno: turnosDBUltimaSemana) {
+        for (Turno turno: listTurnos) {
             TurnoDto turnoDto = new TurnoDto(turno);
             turnoDto.setPaciente(pacienteServiceImpl.buscar(turno.getPaciente().getId()));
             turnoDto.setOdontologo(odontologoServiceImpl.buscar(turno.getOdontologo().getId()));

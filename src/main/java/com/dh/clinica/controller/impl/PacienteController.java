@@ -28,7 +28,7 @@ public class PacienteController implements CRUDController<PacienteDto> {
     }
 
     @Override
-    @PostMapping()
+    @PostMapping("/nuevo")
     public ResponseEntity<?> crear(@RequestBody PacienteDto paciente) throws ServiceException {
         PacienteDto pacienteNuevo = pacienteServiceImpl.registrar(paciente);
         if (pacienteNuevo == null) {

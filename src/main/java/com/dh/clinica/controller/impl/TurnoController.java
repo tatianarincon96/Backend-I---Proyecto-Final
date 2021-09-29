@@ -11,6 +11,8 @@ import com.dh.clinica.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +25,20 @@ public class TurnoController implements CRUDController<TurnoDto> {
     TurnoServiceImpl turnoServiceImpl;
 
     @Override
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/todos")
     public ResponseEntity<?> buscarTodos() throws FindByIdException {
         List<TurnoDto> turnos = turnoServiceImpl.buscarTodos();
+        if (turnos.size() == 0) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron turnos");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(turnos);
+    }
+
+    @GetMapping("/ultimaSemana")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<?> buscarTodosUltimaSemana() throws FindByIdException {
+        List<TurnoDto> turnos = turnoServiceImpl.buscarTurnosUltimaSemana();
         if (turnos.size() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron turnos");
         }
