@@ -4,7 +4,7 @@ import com.dh.clinica.exceptions.FindByIdException;
 
 import java.util.List;
 
-public interface IDomicilioService extends ClinicaService<DomicilioDto> {
+public interface IDomicilioService extends ClinicaService<DomicilioDto,DomicilioDto> {
 
     DomicilioDto registrar(DomicilioDto domicilioDto);
 

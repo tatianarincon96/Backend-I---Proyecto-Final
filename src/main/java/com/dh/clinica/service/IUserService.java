@@ -1,17 +1,18 @@
 package com.dh.clinica.service;
+import com.dh.clinica.dto.responses.ResponseUserDTO;
 import com.dh.clinica.exceptions.FindByIdException;
 import com.dh.clinica.dto.UserDto;
 
 import java.util.List;
 
-public interface IUserService extends ClinicaService<UserDto> {
-    UserDto registrar(UserDto userDto);
+public interface IUserService extends ClinicaService<ResponseUserDTO,UserDto> {
+    ResponseUserDTO registrar(UserDto userDto);
 
-    UserDto buscar(Integer id) throws FindByIdException;
+    ResponseUserDTO buscar(Integer id) throws FindByIdException;
 
-    List<UserDto> buscarTodos();
+    List<ResponseUserDTO> buscarTodos();
 
     String eliminar(Integer id) throws FindByIdException ;
 
-    UserDto actualizar(UserDto userDto) throws FindByIdException ;
+    ResponseUserDTO actualizar(UserDto userDto) throws FindByIdException ;
 }

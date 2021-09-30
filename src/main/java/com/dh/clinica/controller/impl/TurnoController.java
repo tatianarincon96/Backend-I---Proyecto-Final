@@ -2,6 +2,7 @@ package com.dh.clinica.controller.impl;
 import com.dh.clinica.controller.CRUDController;
 import com.dh.clinica.dto.PacienteDto;
 import com.dh.clinica.dto.TurnoDto;
+import com.dh.clinica.dto.responses.ResponseTurnoDTO;
 import com.dh.clinica.service.impl.PacienteServiceImpl;
 import com.dh.clinica.service.impl.TurnoServiceImpl;
 import com.dh.clinica.exceptions.BadRequestException;
@@ -28,7 +29,7 @@ public class TurnoController implements CRUDController<TurnoDto> {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/todos")
     public ResponseEntity<?> buscarTodos() throws FindByIdException {
-        List<TurnoDto> turnos = turnoServiceImpl.buscarTodos();
+        List<ResponseTurnoDTO> turnos = turnoServiceImpl.buscarTodos();
         if (turnos.size() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron turnos");
         }
@@ -38,7 +39,7 @@ public class TurnoController implements CRUDController<TurnoDto> {
     @GetMapping("/ultimaSemana")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> buscarTodosUltimaSemana() throws FindByIdException {
-        List<TurnoDto> turnos = turnoServiceImpl.buscarTurnosUltimaSemana();
+        List<ResponseTurnoDTO> turnos = turnoServiceImpl.buscarTurnosUltimaSemana();
         if (turnos.size() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron turnos");
         }
@@ -48,7 +49,7 @@ public class TurnoController implements CRUDController<TurnoDto> {
     @Override
     @PostMapping("/nuevo")
     public ResponseEntity<?> crear(@RequestBody TurnoDto turno) throws ServiceException, BadRequestException, FindByIdException {
-        TurnoDto turnoNuevo = turnoServiceImpl.registrar(turno);
+        ResponseTurnoDTO turnoNuevo = turnoServiceImpl.registrar(turno);
         if (turnoNuevo == null) {
             throw new ServiceException("No se pudo crear el turno", "crear turno");
         }

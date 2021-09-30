@@ -1,21 +1,22 @@
 package com.dh.clinica.service;
 import com.dh.clinica.dto.TurnoDto;
+import com.dh.clinica.dto.responses.ResponseTurnoDTO;
 import com.dh.clinica.exceptions.BadRequestException;
 import com.dh.clinica.exceptions.FindByIdException;
 
 import java.util.List;
 
-public interface ITurnoService extends ClinicaService<TurnoDto> {
+public interface ITurnoService extends ClinicaService<ResponseTurnoDTO,TurnoDto> {
 
-    TurnoDto registrar(TurnoDto turnoDto) throws BadRequestException, FindByIdException;
+    ResponseTurnoDTO registrar(TurnoDto turnoDto) throws BadRequestException, FindByIdException;
 
-    TurnoDto buscar(Integer id) throws FindByIdException;
+    ResponseTurnoDTO buscar(Integer id) throws FindByIdException;
 
-    List<TurnoDto> buscarTodos() throws FindByIdException;
+    List<ResponseTurnoDTO> buscarTodos() throws FindByIdException;
 
-    List<TurnoDto> buscarTurnosUltimaSemana() throws FindByIdException;
+    List<ResponseTurnoDTO> buscarTurnosUltimaSemana() throws FindByIdException;
 
     String eliminar(Integer id) throws FindByIdException;
 
-    TurnoDto actualizar(TurnoDto turnoDto) throws FindByIdException;
+    ResponseTurnoDTO actualizar(TurnoDto turnoDto) throws FindByIdException;
 }

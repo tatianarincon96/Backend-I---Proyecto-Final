@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface ClinicaService<T> {
+public interface ClinicaService<T,E> {
 
-    T registrar(T t) throws BadRequestException, FindByIdException;
+    T registrar(E e) throws BadRequestException, FindByIdException;
 
     T buscar(Integer id) throws FindByIdException;
 
@@ -16,5 +16,5 @@ public interface ClinicaService<T> {
 
     String eliminar(Integer id) throws FindByIdException;
 
-    T actualizar(T t) throws FindByIdException;
+    T actualizar(E e) throws FindByIdException;
 }

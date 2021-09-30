@@ -1,6 +1,7 @@
 package com.dh.clinica.controller.impl;
 
 import com.dh.clinica.controller.CRUDController;
+import com.dh.clinica.dto.responses.ResponseUserDTO;
 import com.dh.clinica.exceptions.FindByIdException;
 import com.dh.clinica.exceptions.ServiceException;
 import com.dh.clinica.exceptions.UnauthorizedAccessException;
@@ -32,7 +33,7 @@ public class UserController implements CRUDController<UserDto>  {
     @Override
     @GetMapping("/todos")
     public ResponseEntity<?> buscarTodos() {
-        List<UserDto> usuarios = appUserServiceImpl.buscarTodos();
+        List<ResponseUserDTO> usuarios = appUserServiceImpl.buscarTodos();
         if (usuarios.size() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron usuarios");
         }
@@ -41,7 +42,7 @@ public class UserController implements CRUDController<UserDto>  {
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> crear(@RequestBody UserDto appUser) throws ServiceException {
-        UserDto nuevoUsuario;
+        ResponseUserDTO nuevoUsuario;
         nuevoUsuario = appUserServiceImpl.registrar(appUser);
         if (nuevoUsuario == null) {
             throw new ServiceException("No se pudo registrar el usuario", "registrar usuario");

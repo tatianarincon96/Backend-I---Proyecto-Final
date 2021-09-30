@@ -1,4 +1,6 @@
 package com.dh.clinica.service.impl;
+import com.dh.clinica.dto.responses.ResponseUserDTO;
+import com.dh.clinica.exceptions.BadRequestException;
 import com.dh.clinica.exceptions.FindByIdException;
 import com.dh.clinica.persistence.entity.users.User;
 import com.dh.clinica.dto.UserDto;
@@ -31,43 +33,43 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         return userRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("User email not found"));
     }
 
-    public UserDto registrar(UserDto appUser) {
+    public ResponseUserDTO registrar(UserDto appUser) {
         logger.debug("Iniciando método registrar usuario");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         User user = userRepository.save(appUser.toEntity());
         logger.debug("Terminó la ejecución del método registrar usuario");
-        return new UserDto(user);
+        return new ResponseUserDTO(user);
     }
 
     @Override
-    public UserDto buscar(Integer id) throws FindByIdException {
+    public ResponseUserDTO buscar(Integer id) throws FindByIdException {
         logger.debug("Iniciando método buscar usuario por ID");
         if (!userRepository.existsById(id)) {
             throw new FindByIdException("No existe un usuario con el id ingresado");
         }
         logger.debug("Terminó la ejecución del método buscar usuario por ID");
-        return new UserDto(userRepository.getById(id));
+        return new ResponseUserDTO(userRepository.getById(id));
     }
 
-    public List<UserDto> buscarTodos() {
+    public List<ResponseUserDTO> buscarTodos() {
         logger.debug("Iniciando método buscar todos los usuarios");
-        List<UserDto> userDto = new ArrayList<>();
+        List<ResponseUserDTO> userDto = new ArrayList<>();
         for (User user: userRepository.findAll()) {
-            userDto.add(new UserDto(user));
+            userDto.add(new ResponseUserDTO(user));
         }
         logger.debug("Terminó la ejecución del método buscar todos los usuarios");
         return userDto;
     }
 
-    public UserDto buscarPorEmail(String email) {
+    public ResponseUserDTO buscarPorEmail(String email) {
         logger.debug("Iniciando método buscar usuario por email");
         Optional<User> appUser = userRepository.findByEmail(email);
         if (appUser.isEmpty()) {
             throw new UsernameNotFoundException("No existe un usuario con el email ingresado");
         }
         logger.debug("Terminó la ejecución del método buscar usuario por email");
-        return new UserDto(appUser.get());
+        return new ResponseUserDTO(appUser.get());
     }
 
     @Override
@@ -76,7 +78,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     }
 
     @Override
-    public UserDto actualizar(UserDto userDto) throws FindByIdException {
+    public ResponseUserDTO actualizar(UserDto userDto) throws FindByIdException {
         return null;
     }
 }
