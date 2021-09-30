@@ -1,58 +1,62 @@
 package com.dh.clinica.service;
-import com.dh.clinica.controller.impl.PacienteController;
 import com.dh.clinica.dto.OdontologoDto;
 import com.dh.clinica.exceptions.FindByIdException;
-import com.dh.clinica.exceptions.ServiceException;
-import org.junit.Assert;
-import org.junit.BeforeClass;
+import com.dh.clinica.persistence.repository.IOdontologoRepository;
+import com.dh.clinica.service.impl.OdontologoServiceImpl;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runners.MethodSorters;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-/*@FixMethodOrder(MethodSorters.NAME_ASCENDING)*/
-@RunWith(SpringRunner.class)
-@WebMvcTest(PacienteController.class)
-/*@SpringBootTest*/
-class OdontologoServiceImplTest {
-   /* @Autowired
-    private MockMvc mvc;
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@SpringBootTest
+public class OdontologoServiceImplTest {
+    @Mock
     @Autowired
-    private OdontologoServiceImpl odontologoService;
+    private IOdontologoRepository odontologoRepository;
 
+    @Autowired
+    @InjectMocks
+    private IOdontologoService odontologoService = new OdontologoServiceImpl(odontologoRepository);
+    private OdontologoDto odontologo;
 
-    public void cargarDataSet() {
-        this.odontologoService.registrar(new OdontologoDto("Santiago", "Paz", 3455647));
-    }
-
-    @org.junit.Test
-    public void agregarOdontologo() {
-        this.cargarDataSet();
-        OdontologoDto odontologo = odontologoService.registrar(new OdontologoDto("Juan", "Ramirez", 348971960));
-        Assert.assertTrue(odontologo.getId() != null);
-
-    }
-
-    @org.junit.Test
-    public void eliminarOdontologoTest() throws ServiceException, FindByIdException {
-        odontologoService.eliminar(1);
-        Assert.assertTrue(odontologoService.buscar(1) != null);
-
+    @BeforeEach
+    public void setUp() {
+        odontologo = new OdontologoDto();
+        odontologo.setId(1);
+        odontologo.setNombre("Santiago");
+        odontologo.setApellido("Paz");
+        odontologo.setMatricula(3455647);
     }
 
     @Test
+    @Transactional
+    public void testAgregarOdontologo() throws Exception {
+        OdontologoDto o = odontologoService.registrar(odontologo);
+        Assertions.assertNotNull(odontologoService.buscar(o.getId()));
+    }
+
+    @Test
+    @Transactional
+    public void eliminarOdontologoTest() throws FindByIdException {
+        odontologoService.registrar(odontologo);
+        odontologoService.eliminar(1);
+        Assertions.assertEquals(0, odontologoService.buscarTodos().size());
+    }
+
+    @Test
+    @Transactional
     public void traerTodos() {
+        odontologoService.registrar(odontologo);
         List<OdontologoDto> odontologos = odontologoService.buscarTodos();
-        Assert.assertTrue(!odontologos.isEmpty());
-        Assert.assertTrue(odontologos.size() == 1);
-        System.out.println(odontologos);
-    }*/
+        Assertions.assertEquals(1, odontologos.size());
+    }
 }

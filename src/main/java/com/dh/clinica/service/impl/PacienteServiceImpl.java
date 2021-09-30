@@ -24,7 +24,7 @@ public class PacienteServiceImpl implements IPacienteService {
     @Autowired
     private IPacienteRepository pacienteRepository;
 
-    public PacienteServiceImpl() {}
+    public PacienteServiceImpl(IPacienteRepository pacienteRepository) {}
 
     @Override
     public PacienteDto registrar(PacienteDto paciente) {

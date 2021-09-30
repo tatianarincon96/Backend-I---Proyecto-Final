@@ -22,6 +22,10 @@ public class OdontologoServiceImpl implements IOdontologoService {
     public OdontologoServiceImpl() {
     }
 
+    public OdontologoServiceImpl(IOdontologoRepository odontologoRepository) {
+        this.odontologoRepository = odontologoRepository;
+    }
+
     @Override
     public OdontologoDto registrar(OdontologoDto odontologo) {
         logger.debug("Iniciando método registrar odontólogo");
