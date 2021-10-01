@@ -12,6 +12,7 @@ import com.dh.clinica.persistence.repository.ITurnoRepository;
 import com.dh.clinica.service.ITurnoService;
 import com.dh.clinica.exceptions.BadRequestException;
 import com.dh.clinica.exceptions.FindByIdException;
+import org.apache.coyote.Response;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -54,6 +55,14 @@ public class TurnoServiceImpl implements ITurnoService {
         return true;
     }
 
+    private ResponseTurnoDTO settearPacienteYOdontologo(Turno turnoEntity, ResponseTurnoDTO turnoDto) throws FindByIdException {
+        PacienteDto paciente = pacienteServiceImpl.buscar(turnoEntity.getPaciente().getId());
+        OdontologoDto odontologo = odontologoServiceImpl.buscar(turnoEntity.getOdontologo().getId());
+        turnoDto.setPaciente(new ResponsePacienteDTO(paciente.getNombre(),paciente.getApellido()));
+        turnoDto.setOdontologo(new ResponseOdontologoDTO(odontologo.getNombre(),odontologo.getApellido()));
+        return turnoDto;
+    }
+
     @Override
     public ResponseTurnoDTO registrar(TurnoDto turnoDto) throws BadRequestException, FindByIdException {
         logger.debug("Iniciando método registrar turno");
@@ -79,25 +88,19 @@ public class TurnoServiceImpl implements ITurnoService {
         }
         Turno turno = turnoRepository.getById(id);
         ResponseTurnoDTO turnoDto = new ResponseTurnoDTO(turno);
-        PacienteDto paciente = pacienteServiceImpl.buscar(turno.getPaciente().getId());
-        OdontologoDto odontologo = odontologoServiceImpl.buscar(turno.getOdontologo().getId());
-        turnoDto.setPaciente(new ResponsePacienteDTO(paciente.getNombre(),paciente.getApellido()));
-        turnoDto.setOdontologo(new ResponseOdontologoDTO(odontologo.getNombre(),odontologo.getApellido()));
+        ResponseTurnoDTO turnoConPacienteYOdontologo = settearPacienteYOdontologo(turno,turnoDto);
         logger.debug("Terminó la ejecución del método buscar turno por ID");
-        return turnoDto;
+        return turnoConPacienteYOdontologo;
     }
 
     @Override
     public List<ResponseTurnoDTO> buscarTodos() throws FindByIdException {
         logger.debug("Iniciando método buscar todos los turnos");
         List<ResponseTurnoDTO> turnos = new ArrayList<>();
-        for (Turno t : turnoRepository.findAll()) {
-            ResponseTurnoDTO turnoDto = new ResponseTurnoDTO(t);
-            PacienteDto paciente = pacienteServiceImpl.buscar(t.getPaciente().getId());
-            OdontologoDto odontologo = odontologoServiceImpl.buscar(t.getOdontologo().getId());
-            turnoDto.setPaciente(new ResponsePacienteDTO(paciente.getNombre(),paciente.getApellido()));
-            turnoDto.setOdontologo(new ResponseOdontologoDTO(odontologo.getNombre(),odontologo.getApellido()));
-            turnos.add(turnoDto);
+        for (Turno turno : turnoRepository.findAll()) {
+            ResponseTurnoDTO turnoDto = new ResponseTurnoDTO(turno);
+            ResponseTurnoDTO turnoConPacienteYOdontologo = settearPacienteYOdontologo(turno,turnoDto);
+            turnos.add(turnoConPacienteYOdontologo);
         }
         logger.debug("Terminó la ejecución del método buscar todos los turnos");
         return turnos;
@@ -115,40 +118,31 @@ public class TurnoServiceImpl implements ITurnoService {
     }
 
     @Override
-    public List<ResponseTurnoDTO> buscarTurnosUltimaSemana() throws FindByIdException {
+    public List<ResponseTurnoDTO> buscarTurnosProximaSemana() throws FindByIdException {
         List<Turno> turnosDB = turnoRepository.findAll();
-        Stream<Turno> streamTurnos = turnosDB.stream().filter(t -> t.getFecha().isAfter(LocalDate.now().minusDays(7)));
+        Stream<Turno> streamTurnos = turnosDB.stream().filter(t -> t.getFecha().isBefore(LocalDate.now().plusDays(8)) && t.getFecha().isAfter(LocalDate.now())); // Probar
         List<Turno> listTurnos = streamTurnos.collect(Collectors.toList());
-        List<ResponseTurnoDTO> turnosDtoUltimaSemana = new ArrayList<>();
+        List<ResponseTurnoDTO> turnosProximaSemana = new ArrayList<>();
         for (Turno turno: listTurnos) {
             ResponseTurnoDTO turnoDto = new ResponseTurnoDTO(turno);
-            PacienteDto paciente = pacienteServiceImpl.buscar(turno.getPaciente().getId());
-            OdontologoDto odontologo = odontologoServiceImpl.buscar(turno.getOdontologo().getId());
-            turnoDto.setPaciente(new ResponsePacienteDTO(paciente.getNombre(),paciente.getApellido()));
-            turnoDto.setOdontologo(new ResponseOdontologoDTO(odontologo.getNombre(),odontologo.getApellido()));
-            turnosDtoUltimaSemana.add(turnoDto);
+            ResponseTurnoDTO turnoConPacienteYOdontologo = settearPacienteYOdontologo(turno,turnoDto);
+            turnosProximaSemana.add(turnoConPacienteYOdontologo);
         }
-        return turnosDtoUltimaSemana;
+        return turnosProximaSemana;
     }
 
     @Override
     public ResponseTurnoDTO actualizar(TurnoDto turno) throws FindByIdException {
         logger.debug("Iniciando método actualizar turno");
-        if (!turnoRepository.existsById(turno.getId())) {
+        if (!turnoRepository.existsById(turno.getId()) || turno.getId() == null) {
             throw new FindByIdException("No existe un turno con el id ingresado");
         }
         Turno turnoEnDB = turnoRepository.findById(turno.getId()).get();
-/*        turnoEnDB.setPaciente(new Paciente(turno.getPaciente().getId()));
-        turnoEnDB.setOdontologo(new Odontologo(turno.getOdontologo().getId()));*/
         turnoEnDB.setFecha(turno.getFecha());
         turnoEnDB.setHora(turno.getHora());
-        turnoRepository.save(turnoEnDB);
-        ResponseTurnoDTO turnoDto = new ResponseTurnoDTO(turnoEnDB);
-        PacienteDto paciente = pacienteServiceImpl.buscar(turnoEnDB.getPaciente().getId());
-        OdontologoDto odontologo = odontologoServiceImpl.buscar(turnoEnDB.getOdontologo().getId());
-        turnoDto.setPaciente(new ResponsePacienteDTO(paciente.getNombre(),paciente.getApellido()));
-        turnoDto.setOdontologo(new ResponseOdontologoDTO(odontologo.getNombre(),odontologo.getApellido()));
+        ResponseTurnoDTO turnoDto = new ResponseTurnoDTO(turnoRepository.save(turnoEnDB));
+        ResponseTurnoDTO turnoConPacienteYOdontologo = settearPacienteYOdontologo(turnoEnDB,turnoDto);
         logger.debug("Terminó la ejecución del método actualizar turno");
-        return turnoDto;
+        return turnoConPacienteYOdontologo;
     }
 }

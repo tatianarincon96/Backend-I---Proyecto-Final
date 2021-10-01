@@ -14,7 +14,7 @@ public interface ITurnoService extends ClinicaService<ResponseTurnoDTO,TurnoDto>
 
     List<ResponseTurnoDTO> buscarTodos() throws FindByIdException;
 
-    List<ResponseTurnoDTO> buscarTurnosUltimaSemana() throws FindByIdException;
+    List<ResponseTurnoDTO> buscarTurnosProximaSemana() throws FindByIdException;
 
     String eliminar(Integer id) throws FindByIdException;
 

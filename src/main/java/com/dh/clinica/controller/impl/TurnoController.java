@@ -36,10 +36,10 @@ public class TurnoController implements CRUDController<TurnoDto> {
         return ResponseEntity.status(HttpStatus.OK).body(turnos);
     }
 
-    @GetMapping("/ultimaSemana")
+    @GetMapping("/proximaSemana")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> buscarTodosUltimaSemana() throws FindByIdException {
-        List<ResponseTurnoDTO> turnos = turnoServiceImpl.buscarTurnosUltimaSemana();
+    public ResponseEntity<?> buscarTodosProximaSemana() throws FindByIdException {
+        List<ResponseTurnoDTO> turnos = turnoServiceImpl.buscarTurnosProximaSemana();
         if (turnos.size() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron turnos");
         }
