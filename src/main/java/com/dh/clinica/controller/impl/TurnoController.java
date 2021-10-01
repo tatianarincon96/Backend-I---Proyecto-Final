@@ -36,7 +36,7 @@ public class TurnoController implements CRUDController<TurnoDto> {
         return ResponseEntity.status(HttpStatus.OK).body(turnos);
     }
 
-    @GetMapping("/proximaSemana")
+    @GetMapping("/proxima-semana")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> buscarTodosProximaSemana() throws FindByIdException {
         List<ResponseTurnoDTO> turnos = turnoServiceImpl.buscarTurnosProximaSemana();
