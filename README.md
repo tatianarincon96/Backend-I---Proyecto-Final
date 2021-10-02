@@ -17,7 +17,8 @@
 - Registrar nuevo: POST a PATH/odontologos/nuevo
 
   * 200 OK → Devuelve el odontólogo
-  ```RequestBody:
+  ***RequestBody:***
+  ```
   {
       "nombre": "Lorena",
       "apellido": "Gutierrez",
@@ -29,7 +30,8 @@
 
   * 200 OK → Devuelve el odontólogo
   * 404 NOT FOUND → No se encontró un odontólogo con el id ingresado
-  ```RequestBody:
+  ***RequestBody:***
+  ```
   {
      "id": "1",
      "nombre": "Lorena",
@@ -57,7 +59,8 @@
 - Registrar nuevo: POST a PATH/pacientes/nuevo
 
   * 200 OK → Devuelve el paciente
-  ```RequestBody:
+  ***RequestBody:***
+  ```
   {
     "nombre": "Julieta",
     "apellido": "Leti",
@@ -75,7 +78,8 @@
 
   * 200 OK → Devuelve el paciente
   * 404 NOT FOUND → No se encontró un paciente con el id ingresado
-  ```RequestBody:
+  ***RequestBody:***
+  ```
   {
     "id": 1,
     "nombre": "Julieta",
@@ -109,7 +113,8 @@
 - Registrar nuevo: POST a PATH/turnos/nuevo
 
   * 200 OK → devuelve el turno con el nombre y apellido de paciente y odontólogo
-  ```RequestBody:
+  ***RequestBody:***
+  ```
   {
     "paciente": {"id": "1"},
     "odontologo": {"id": "1"},
@@ -122,7 +127,8 @@
 
   * 200 OK → devuelve el turno con el nombre y apellido de paciente y odontólogo
   * 404 NOT FOUND → No se encontró un turno con el id ingresado
-  ```RequestBody:
+  ***RequestBody:***
+  ```
   {
     "id": 1,
     "paciente": {"id": "1"},
@@ -144,5 +150,3 @@
 - Obtener todos próxima semana: GET a PATH/turnos/proxima-semana
   * 200 OK → devuelve todos los turnos de los próximos 7 días
   * 204 NO CONTENT → la lista está vacía
-
-## Proyecto desarrollado por Tatiana Rincon. Gracias.
