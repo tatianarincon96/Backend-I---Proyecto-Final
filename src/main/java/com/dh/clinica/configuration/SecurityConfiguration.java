@@ -1,4 +1,5 @@
 package com.dh.clinica.configuration;
+import com.dh.clinica.exceptions.FindByIdException;
 import com.dh.clinica.persistence.entity.users.UserRoles;
 import com.dh.clinica.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

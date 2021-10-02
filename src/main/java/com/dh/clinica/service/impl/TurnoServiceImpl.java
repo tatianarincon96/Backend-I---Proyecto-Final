@@ -120,7 +120,7 @@ public class TurnoServiceImpl implements ITurnoService {
     @Override
     public List<ResponseTurnoDTO> buscarTurnosProximaSemana() throws FindByIdException {
         List<Turno> turnosDB = turnoRepository.findAll();
-        Stream<Turno> streamTurnos = turnosDB.stream().filter(t -> t.getFecha().isBefore(LocalDate.now().plusDays(8)) && t.getFecha().isAfter(LocalDate.now())); // Probar
+        Stream<Turno> streamTurnos = turnosDB.stream().filter(t -> t.getFecha().isBefore(LocalDate.now().plusDays(8)) && t.getFecha().isAfter(LocalDate.now()));
         List<Turno> listTurnos = streamTurnos.collect(Collectors.toList());
         List<ResponseTurnoDTO> turnosProximaSemana = new ArrayList<>();
         for (Turno turno: listTurnos) {
