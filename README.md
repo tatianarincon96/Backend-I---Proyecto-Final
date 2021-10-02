@@ -99,7 +99,7 @@
   * 204 NO CONTENT → la lista está vacía
 
 
-## Turnos:
+### Turnos
 
 - Buscar por id: GET a PATH/turnos/{id}
 
