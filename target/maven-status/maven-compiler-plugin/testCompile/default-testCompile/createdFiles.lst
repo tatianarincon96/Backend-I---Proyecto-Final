@@ -1,4 +1,5 @@
-com\dh\clinica\service\impl\PacienteServiceImplTest.class
 com\dh\clinica\ClinicaOdontologicaApplicationTests.class
-com\dh\clinica\service\impl\OdontologoServiceImplTest.class
+com\dh\clinica\service\PacienteServiceUnitTest.class
+com\dh\clinica\service\OdontologoServiceUnitTest.class
+com\dh\clinica\controller\OdontologosIntegrationTest.class
 com\dh\clinica\controller\PacientesIntegrationTest.class

@@ -7,6 +7,7 @@ C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Ba
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\service\impl\DomicilioServiceImpl.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\dto\UserDto.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\util\DataLoader.java
+C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\dto\responses\ResponsePacienteDTO.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\persistence\entity\Domicilio.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\persistence\entity\users\UserRoles.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\persistence\repository\IOdontologoRepository.java
@@ -21,13 +22,16 @@ C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Ba
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\controller\CRUDController.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\service\impl\TurnoServiceImpl.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\service\ITurnoService.java
+C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\dto\responses\ResponseTurnoDTO.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\exceptions\GlobalException.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\persistence\repository\ITurnoRepository.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\service\impl\OdontologoServiceImpl.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\dto\TurnoDto.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\util\DatesConverter.java
+C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\dto\responses\ResponseOdontologoDTO.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\service\IUserService.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\configuration\PasswordEncoder.java
+C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\dto\responses\ResponseUserDTO.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\service\IOdontologoService.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\controller\impl\TurnoController.java
 C:\Users\TATIANA\Desktop\Tats\CTD - DH\3er Bimestre - Materias\Back End I\TFI\Backend1-Proyecto-Final\src\main\java\com\dh\clinica\controller\impl\PacienteController.java
