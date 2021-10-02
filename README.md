@@ -2,9 +2,9 @@
 ## Sinopsis del proyecto
 ##### Software de una clínica odontólogica en la que se pueden agregar, buscar, modificar y eliminar pacientes, odontólogos y turnos mediante peticiones a una API REST
 ## Tecnologías utilizadas
-- *** JAVA ***
-- *** Maven ***
-- *** Spring Boot ***
+- ***JAVA***
+- ***Maven***
+- ***Spring Boot***
 
 ## Endpoints
 ### Odontólogos
