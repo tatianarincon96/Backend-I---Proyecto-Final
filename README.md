@@ -17,7 +17,6 @@
 - Registrar nuevo: POST a PATH/odontologos/nuevo
 
   * 200 OK → Devuelve el odontólogo
-  ***RequestBody:***
   ```
   {
       "nombre": "Lorena",
@@ -30,7 +29,6 @@
 
   * 200 OK → Devuelve el odontólogo
   * 404 NOT FOUND → No se encontró un odontólogo con el id ingresado
-  ***RequestBody:***
   ```
   {
      "id": "1",
@@ -59,7 +57,6 @@
 - Registrar nuevo: POST a PATH/pacientes/nuevo
 
   * 200 OK → Devuelve el paciente
-  ***RequestBody:***
   ```
   {
     "nombre": "Julieta",
@@ -78,7 +75,6 @@
 
   * 200 OK → Devuelve el paciente
   * 404 NOT FOUND → No se encontró un paciente con el id ingresado
-  ***RequestBody:***
   ```
   {
     "id": 1,
@@ -113,7 +109,6 @@
 - Registrar nuevo: POST a PATH/turnos/nuevo
 
   * 200 OK → devuelve el turno con el nombre y apellido de paciente y odontólogo
-  ***RequestBody:***
   ```
   {
     "paciente": {"id": "1"},
@@ -127,7 +122,6 @@
 
   * 200 OK → devuelve el turno con el nombre y apellido de paciente y odontólogo
   * 404 NOT FOUND → No se encontró un turno con el id ingresado
-  ***RequestBody:***
   ```
   {
     "id": 1,
