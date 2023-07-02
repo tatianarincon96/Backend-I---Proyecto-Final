@@ -25,7 +25,7 @@ public class OdontologoController implements CRUDController<OdontologoDto> {
     private OdontologoServiceImpl odontologoServiceImpl;
 
     @Override
-    @GetMapping("/todos")
+    @GetMapping()
     public ResponseEntity<?> buscarTodos() throws UnauthorizedAccessException {
         List<OdontologoDto> odontologos = odontologoServiceImpl.buscarTodos();
         if (odontologos.size() == 0) {
@@ -35,7 +35,7 @@ public class OdontologoController implements CRUDController<OdontologoDto> {
     }
 
     @Override
-    @PostMapping("/nuevo")
+    @PostMapping()
     public ResponseEntity<?> crear(@RequestBody OdontologoDto odontologo) throws ServiceException, UnauthorizedAccessException {
         OdontologoDto odontologoNuevo;
         odontologoNuevo = odontologoServiceImpl.registrar(odontologo);
@@ -49,6 +49,11 @@ public class OdontologoController implements CRUDController<OdontologoDto> {
     @GetMapping("/{id}")
     public ResponseEntity<?> buscar(@PathVariable Integer id) throws FindByIdException, UnauthorizedAccessException {
         return ResponseEntity.status(HttpStatus.OK).body(odontologoServiceImpl.buscar(id));
+    }
+
+    @GetMapping("/matricula/{numero}")
+    public ResponseEntity<?> buscarPorMatricula(@PathVariable Integer numero) throws FindByIdException, UnauthorizedAccessException {
+        return ResponseEntity.status(HttpStatus.OK).body(odontologoServiceImpl.buscarPorMatricula(numero));
     }
 
     @Override

@@ -80,4 +80,14 @@ public class OdontologoServiceImpl implements IOdontologoService {
         logger.debug("Terminó la ejecución del método actualizar odontólogo");
         return new OdontologoDto(odontologoEnDB);
     }
+
+    @Override
+    public OdontologoDto buscarPorMatricula(Integer number) throws FindByIdException {
+        logger.debug("Iniciando método buscar odontólogo por matrícula");
+        if (!odontologoRepository.existsByMatricula(number)) {
+            throw new FindByIdException("No existe un odontólogo con la matrícula ingresada");
+        }
+        logger.debug("Terminó la ejecución del método buscar odontólogo por matrícula");
+        return new OdontologoDto(odontologoRepository.findByMatricula(number));
+    }
 }

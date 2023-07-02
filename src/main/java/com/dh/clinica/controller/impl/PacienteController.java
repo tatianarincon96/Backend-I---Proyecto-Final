@@ -18,7 +18,7 @@ public class PacienteController implements CRUDController<PacienteDto> {
     PacienteServiceImpl pacienteServiceImpl;
 
     @Override
-    @GetMapping("/todos")
+    @GetMapping()
     public ResponseEntity<?> buscarTodos() {
         List<PacienteDto> pacientes = pacienteServiceImpl.buscarTodos();
         if (pacientes.size() == 0) {
@@ -28,7 +28,7 @@ public class PacienteController implements CRUDController<PacienteDto> {
     }
 
     @Override
-    @PostMapping("/nuevo")
+    @PostMapping()
     public ResponseEntity<?> crear(@RequestBody PacienteDto paciente) throws ServiceException {
         PacienteDto pacienteNuevo = pacienteServiceImpl.registrar(paciente);
         if (pacienteNuevo == null) {
@@ -41,6 +41,11 @@ public class PacienteController implements CRUDController<PacienteDto> {
     @GetMapping("/{id}")
     public ResponseEntity<?> buscar(@PathVariable Integer id) throws FindByIdException {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteServiceImpl.buscar(id));
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> buscar(@PathVariable String email) throws FindByIdException {
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteServiceImpl.buscarPorEmail(email));
     }
 
     @Override

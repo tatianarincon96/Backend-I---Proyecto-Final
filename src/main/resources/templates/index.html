@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+<body class="bg-cuerpo-secundario" >
+
+<nav class="navbar navbar-expand-lg bg-success p-2 text-dark bg-opacity-25">
+    <div class="container-fluid" >
+      <a class="navbar-brand" href="#">Clinica Odontologica</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Turnos
+            </a>
+            <ul class="dropdown-menu bg-success p-2 text-dark bg-opacity-10">
+              <li><a class="dropdown-item" href="/post_turnos.html">Agregar</a></li>
+              <li><a class="dropdown-item" href="/turnoFunciones.html">Listar</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Odontologos
+            </a>
+            <ul class="dropdown-menu bg-success p-2 text-dark bg-opacity-10">
+              <li><a class="dropdown-item" href="./post_odontologos.html">Agregar</a></li>
+              <li><a class="dropdown-item" href="./odontologoFunciones.html">Buscar/Listar/Modificar/Eliminar</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pacientes
+            </a>
+            <ul class="dropdown-menu bg-success p-2 text-dark bg-opacity-10">
+              <li><a class="dropdown-item" href="./post_pacientes.html">Agregar</a></li>
+              <li><a class="dropdown-item" href="./pacienteFunciones.html">Buscar/Listar/Modificar/Eliminar</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="text-center mt-4" >
+  <h3 class="py-4" style="font-family: 'Segoe UI', sans-serif;">Servicios disponibles</h3>
+</div>
+
+  <!-- empieza las card -->
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card text-center bg-light" style="width: 18rem;">
+          <img src="/images/odontologo.jpg" class="card-img-top" alt="Imagen 1" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-center" >Nuestros Odontólogos</h5>
+            <menu><a class="dropdown-item" href="./post_odontologos.html">Agregar un odontólogo</a></menu>
+            <menu><a class="dropdown-item" href="./odontologoFunciones.html">Opciones</a></menu>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card text-center bg-light" style="width: 18rem;">
+          <img src="/images/paciente.jpg" class="card-img-top" alt="Imagen 2" style="height: 300px; object-fit: cover;">
+            <div class="card-body">
+            <h5 class="card-title text-center">Nuestros pacientes</h5>
+              <menu><a class="dropdown-item" href="./post_pacientes.html">Agregar un paciente</a></menu>
+              <menu><a class="dropdown-item" href="./pacienteFunciones.html">Opciones</a></menu>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card text-center bg-light" style="width: 18rem;">
+          <img src="/images/turnos.png" class="card-img-top" alt="Imagen 3" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-center">Solicitar turnos</h5>
+            <menu><a class="dropdown-item" href="./post_turnos.html">Agregar un turno      </a></menu>
+            <menu><a class="dropdown-item" href="./turnoFunciones.html">Listar los turnos</a></menu>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Este es un footer -->
+
+  <footer class="footer bg-success bg-opacity-50 text-light mt-3">
+    <div class="container justify-content-center">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0  justify-content-center">© 2023 - Guillermo Gardella</p>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  
+  
+  
+  
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

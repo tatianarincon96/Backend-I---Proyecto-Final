@@ -2,6 +2,7 @@ package com.dh.clinica.service;
 import com.dh.clinica.dto.PacienteDto;
 import com.dh.clinica.dto.responses.ResponsePacienteDTO;
 import com.dh.clinica.exceptions.FindByIdException;
+import com.dh.clinica.exceptions.ServiceException;
 import org.apache.coyote.Response;
 
 import java.rmi.server.ServerCloneException;
@@ -13,7 +14,7 @@ public interface IPacienteService extends ClinicaService<PacienteDto,PacienteDto
 
     PacienteDto buscar(Integer id) throws FindByIdException;
 
-    PacienteDto buscarPorDni(String dni);
+    PacienteDto buscarPorEmail (String email) throws ServiceException;
 
     List<PacienteDto> buscarTodos();
 

@@ -46,17 +46,6 @@ public class PacienteServiceImpl implements IPacienteService {
     }
 
     @Override
-    public PacienteDto buscarPorDni(String dni) {
-        logger.debug("Iniciando método buscar paciente por dni");
-        Optional<Paciente> paciente = pacienteRepository.findByDni(dni);
-        if (paciente.isEmpty()) {
-            throw new ServiceException("No existe un paciente con el dni ingresado");
-        }
-        logger.debug("Terminó la ejecución del método buscar paciente por dni");
-        return new PacienteDto(paciente.get());
-    }
-
-    @Override
     public List<PacienteDto> buscarTodos() {
         logger.debug("Iniciando método buscar todos los pacientes");
         List<PacienteDto> pacientes = new ArrayList<>();
@@ -93,5 +82,15 @@ public class PacienteServiceImpl implements IPacienteService {
         pacienteRepository.save(pacienteDB);
         logger.debug("Terminó la ejecución del método actualizar paciente");
         return new PacienteDto(pacienteDB);
+    }
+
+    public PacienteDto buscarPorEmail(String email) throws ServiceException {
+        logger.debug("Iniciando método buscar paciente por email");
+        Optional<Paciente> paciente = pacienteRepository.findByEmail(email);
+        if (paciente.isEmpty()) {
+            throw new ServiceException("No existe un paciente con el email ingresado");
+        }
+        logger.debug("Terminó la ejecución del método buscar paciente por email");
+        return new PacienteDto(paciente.get());
     }
 }

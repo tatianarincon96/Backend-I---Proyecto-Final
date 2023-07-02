@@ -10,6 +10,8 @@ public interface IOdontologoService extends ClinicaService<OdontologoDto,Odontol
 
     OdontologoDto buscar(Integer id) throws FindByIdException;
 
+    OdontologoDto buscarPorMatricula(Integer number) throws FindByIdException;
+
     List<OdontologoDto> buscarTodos();
 
     String eliminar(Integer id) throws FindByIdException;

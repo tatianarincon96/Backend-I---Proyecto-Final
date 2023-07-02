@@ -27,7 +27,7 @@ public class TurnoController implements CRUDController<TurnoDto> {
 
     @Override
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/todos")
+    @GetMapping()
     public ResponseEntity<?> buscarTodos() throws FindByIdException {
         List<ResponseTurnoDTO> turnos = turnoServiceImpl.buscarTodos();
         if (turnos.size() == 0) {
@@ -47,7 +47,7 @@ public class TurnoController implements CRUDController<TurnoDto> {
     }
 
     @Override
-    @PostMapping("/nuevo")
+    @PostMapping()
     public ResponseEntity<?> crear(@RequestBody TurnoDto turno) throws ServiceException, BadRequestException, FindByIdException {
         ResponseTurnoDTO turnoNuevo = turnoServiceImpl.registrar(turno);
         if (turnoNuevo == null) {

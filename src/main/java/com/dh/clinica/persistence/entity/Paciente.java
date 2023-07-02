@@ -19,6 +19,7 @@ public class Paciente {
     private String nombre;
     private String apellido;
     private String dni;
+    private String email;
     private LocalDate fechaIngreso;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "id_domicilio", referencedColumnName = "id")
@@ -34,10 +35,11 @@ public class Paciente {
         this.id = id;
     }
 
-    public Paciente(String nombre, String apellido, String dni, LocalDate fechaIngreso, Domicilio domicilio) {
+    public Paciente(String nombre, String apellido, String dni, String email, LocalDate fechaIngreso, Domicilio domicilio) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
+        this.email = email;
         this.fechaIngreso = fechaIngreso;
         this.domicilio = domicilio;
     }
@@ -72,6 +74,14 @@ public class Paciente {
         this.dni = dni;
     }
 
+    public String getEmail() {
+        return dni;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
@@ -95,6 +105,7 @@ public class Paciente {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", dni='" + dni + '\'' +
+                ", email='" + email + '\'' +
                 ", fechaIngreso=" + fechaIngreso +
                 ", domicilio=" + domicilio +
                 '}';

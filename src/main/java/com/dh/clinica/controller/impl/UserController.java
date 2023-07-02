@@ -10,11 +10,12 @@ import com.dh.clinica.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class UserController implements CRUDController<UserDto>  {
 
     @Autowired
@@ -22,7 +23,34 @@ public class UserController implements CRUDController<UserDto>  {
 
     @GetMapping("/")
     public String home() {
-        return "<h1> Bienvenid@ a la clínica odontológica </h1>";
+        return "index";
+    }
+
+    @GetMapping("/post_odontologos.html")
+    public String postOdontologo() {
+        return "post_odontologos";
+    }
+    @GetMapping("/odontologoFunciones.html")
+    public String funcionesOdontologo() {
+        return "odontologoFunciones";
+    }
+
+    @GetMapping("/post_pacientes.html")
+    public String postPaciente() {
+        return "post_pacientes";
+    }
+    @GetMapping("/pacienteFunciones.html")
+    public String funcionesPaciente() {
+        return "pacienteFunciones";
+    }
+
+    @GetMapping("/post_turnos.html")
+    public String postTurno() {
+        return "post_turnos";
+    }
+    @GetMapping("/turnoFunciones.html")
+    public String funcionesTurno() {
+        return "turnoFunciones";
     }
 
     @GetMapping("/403")
@@ -31,7 +59,7 @@ public class UserController implements CRUDController<UserDto>  {
     }
 
     @Override
-    @GetMapping("/todos")
+    @GetMapping()
     public ResponseEntity<?> buscarTodos() {
         List<ResponseUserDTO> usuarios = appUserServiceImpl.buscarTodos();
         if (usuarios.size() == 0) {
@@ -40,7 +68,7 @@ public class UserController implements CRUDController<UserDto>  {
         return ResponseEntity.status(HttpStatus.OK).body(usuarios);
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping()
     public ResponseEntity<?> crear(@RequestBody UserDto appUser) throws ServiceException {
         ResponseUserDTO nuevoUsuario;
         nuevoUsuario = appUserServiceImpl.registrar(appUser);
